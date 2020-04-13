@@ -22,17 +22,15 @@ Example->Input: 1
 
 class Solution:
     def diameterOfBinaryTree(self, root: TreeNode) -> int:
-        arr = []
+        arr = [0]
         self.helper(root,arr)
-        if not len(arr):
-            return 0
-        return max(arr)
+        return arr[0]
     
     def helper(self,root,arr):
         if root is None:
             return 0
         left = self.helper(root.left,arr)
         right = self.helper(root.right,arr)
-        arr.append(left+right)
+        arr[0] = max(arr[0],left+right)
         return max(left,right)+1
         
